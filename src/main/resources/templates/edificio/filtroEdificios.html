@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title> Encontrar Edificio</title>
+<meta name="viewport" content="width=devide-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<meta name="author" content="Everton Teixeira"/>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawsome.com/006642858d.js>"></script>
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div th:replace="~{/fragmentos/fragmentos :: cabecalho}"> </div>
+	
+	<div class="container">
+		<h4> Encontrar Edificio</h4>
+		<hr>
+		<br>
+		<form method="post" action="/pesquisar-edificio" th:object="${edificio}">
+			<div class="input-group col-6 offset-3">
+				<input class="form-control" placeholder="Busque pelo edificio" th:field="*{nome}">
+				<div class="input-group append">
+				<button type="submit" class="btn-col btn-outline-secondary"> Pesquisar </button> 
+				</div>
+			</div>
+		</form>
+		
+		
+<!-- 		<div class="row"> -->
+<!-- 			<div class="card" style="width: 288px">  -->
+<!-- 				<a th:href="@{/edificios-sp}" class="btn btn-outline-primary">Clique aqui!</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+	</div>
+	<div th:replace="~{/fragmentos/fragmentos :: rodape}"> </div>
+		
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+ 	<script>
+ 		$('#fonez1').mask('(00) 00000-0000');
+ 		$('#fones1').mask('(00) 00000-0000');
+ 		$('#cep').mask('00000-000');
+ 	</script>
+</body>
+</html>

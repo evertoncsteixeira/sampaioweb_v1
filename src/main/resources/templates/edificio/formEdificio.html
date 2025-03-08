@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title> + Inserir Edificio</title>
+<meta name="viewport" content="width=devide-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<meta name="author" content="Everton Teixeira"/>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawsome.com/006642858d.js>"></script>
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div th:replace="~{/fragmentos/fragmentos :: cabecalho}"> </div>
+	
+	<div class="container">
+		<h4> + Inserir Edificio</h4>
+		<hr>
+<!-- nome -->
+			<form method="post" action="/insertEdificio" th:object="${edificio}">
+			<div class="row">
+				<div class="col-md-8 form-group offset-md-1">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('nome')}">
+					<label class="validation-message" th:errors="*{nome}"></label>
+				</div>
+					<label> Edifício </label>
+					<input class="form-control" placeholder="Ex: 001 Maracatu" th:field="*{nome}" size="100"  maxlength="100">
+				</div>
+			</div> 
+			
+			<div class="row">
+				
+				<div class="col-md-6 form-group offset-md-1">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('endereco')}">
+					<label class="validation-message" th:errors="*{endereco}"></label>
+				</div>
+					<label> Endereço </label>
+					<input class="form-control" placeholder="Ex: Rua ....." th:field="*{endereco}" size="50"  maxlength="40">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('bairro')}">
+					<label class="validation-message" th:errors="*{bairro}"></label>
+				</div>
+					<label> Bairro </label>
+					<input class="form-control" placeholder="Ex: Jardim" th:field="*{bairro}" size="50"  maxlength="40">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('cidade')}">
+					<label class="validation-message" th:errors="*{cidade}"></label>
+				</div>
+					<label> Cidade </label>
+					<input class="form-control" placeholder="Ex: Santana do ..." th:field="*{cidade}" size="50"  maxlength="40">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('cep')}">
+					<label class="validation-message" th:errors="*{cep}"></label>
+				</div>
+					<label> Cep </label>
+					<input id="cep" class="form-control" placeholder="Ex: 00000-000" th:field="*{cep}" size="15"  maxlength="15">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-2 form-group offset-md-1">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors('uf')}">
+					<label class="validation-message" th:errors="*{uf}"></label>
+				</div>
+					<label> Selecione a UF : </label>
+					<select class="form-control" th:field="*{uf}">
+						<option th:each="uf : ${T(br.com.sampaio.enums.Uf).values()}" th:value="${uf}" th:text="${uf}"> 
+						</option>
+					</select>
+				</div>
+			</div> 
+			
+			<div class="row"> 
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Sindico </label>
+					<input class="form-control" th:field="*{sindico}" size="50"  maxlength="40">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> Telefone Sindico </label>
+					<input id="fones1" class="form-control" th:field="*{fones1}" placeholder="Ex: (11) 99999-999" size="15"  maxlength="15">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Zelador </label>
+					<input class="form-control" th:field="*{zelador}" size="50"  maxlength="40">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> Telefone Zelador </label>
+					<input id="fonez1" class="form-control" th:field="*{fonez1}" placeholder="Ex: (11) 99999-999" size="15"  maxlength="15">
+				</div>
+			</div> 
+			
+			<div class="row">
+				<button type="submit" class="btn btn-success offset-md-1"> SALVAR </button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a th:href="@{/index}" class="btn btn-outline-danger"> VOLTAR </a>
+			</div>
+			
+			</form>
+		</hr>
+	</div>
+	
+	<div th:replace="~{/fragmentos/fragmentos :: rodape}"> </div>
+		
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+ 	<script>
+ 		$('#fonez1').mask('(00) 00000-0000');
+ 		$('#fones1').mask('(00) 00000-0000');
+ 		$('#cep').mask('00000-000');
+ 	</script>
+</body>
+</html>

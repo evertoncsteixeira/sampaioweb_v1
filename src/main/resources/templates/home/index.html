@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Sampaio</title>
+<meta name="viewport" content="width=devide-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<meta name="author" content="Everton Teixeira"/>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawsome.com/006642858d.js>"></script>
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div style="margin: 0; text-align: center" class="alert alert-warning alert-dismissible fade show" role="alert">
+  		<strong>Bem vindo: <spam th:text="${session.usuarioLogado.login}"> </spam> </strong> 
+  		<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+  		<spam arial-hidden="true">&times; </spam>
+  		</button>
+	</div>
+	
+	<div th:replace="~{/fragmentos/fragmentos :: cabecalho}"> </div>
+	
+	<section class="neo-section" style="background-image: url('img/bg-index.jpg');">
+		<div class="sombra">
+		
+		</div>
+		<div class="center neo-container">
+			<h1 class= "texto-centro"> Sistema Sampaio </h1>
+		
+		<div class="botoes">
+		<div class="wm">
+			<a th:href="@{/inserirEdificios}" class="btn btn-home "> Cadastrar Edificio </a>
+		</div>
+		
+		<div class="wm">
+			<a th:href="@{cadastroLogin}" class="btn btn-home justify-content-center"> Cadastrar Usuário </a>
+		</div>
+		
+		<div class="wm">
+			<a th:href="@{cadastroLogin}" class="btn btn-home justify-content-center"> Inserir Anexos </a>
+		</div>
+		<div class="clear">
+		</div>
+		</div>
+		</div>
+	</section>
+	
+	<div class="modal fade" id="modalPesquisa">
+		<div class="modal-dialog modal-lg"> 
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"> Encontre um edificio </h5>
+					<button type="button" class="close" data-dismiss="modal"> 
+						<spam> &times; </spam>
+					</button>
+				</div>
+				<form method="post" action="/pesquisar-edificio" th:object="${edificio}">
+					<div class="modal-body">	
+						<input type="text" th:field="*{nome}" placeholder="Digite o edificio" class="form-control"> 
+					</div>
+					
+					<div class="modal-footer">
+						<button class="btn-col btn-danger" data-dismiss="modal">Fechar</button>
+						<button type="submit" class="btn-col btn-success">Pesquisar</button>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="~{/fragmentos/fragmentos :: rodape}"> </div>	
+ 	
+ 	
+</body>
+</html>

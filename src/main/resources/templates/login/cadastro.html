@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Sampaio - Login</title>
+<meta name="viewport" content="width=devide-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<meta name="author" content="Everton Teixeira"/>
+<link rel="stylesheet" href="css/login.css">
+<script src="https://kit.fontawsome.com/006642858d.js>"></script>
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="Login-Form">
+		<div class="container">
+			<div class ="main-div">
+				<div class="texto-header">
+					<h2>	Cadastro de Usuário	</h2>
+					<p> Crie usuário do sistema </p>
+				</div>
+				<form method="post" th:object="${usuario}" action="cadastrarUsuario">
+					<div class="form-group">
+						<input type="email" class="form-control" th:field="*{email}" placeholder="digite o email"> 
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" th:field="*{login}" placeholder="digite o usuario"> 
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" th:field="*{senha}" placeholder="digite a senha"> 
+					</div>
+					<div class="form-group">
+						<label> Selecione Tipo de Usuario : </label>
+						<select class="form-control" th:field="*{tipoUsuario}">
+						<option th:each="tipoUsuario : ${T(br.com.sampaio.enums.TipoUsuario).values()}" th:value="${tipoUsuario}" th:text="${tipoUsuario}">	</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary"> Cadastrar </button>
+					<a th:href="@{/index}" class="btn btn-voltar"> Voltar </a>
+				</form>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

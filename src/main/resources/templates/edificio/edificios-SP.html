@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Sampaio</title>
+<meta name="viewport" content="width=devide-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+<meta name="author" content="Everton Teixeira"/>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://kit.fontawsome.com/006642858d.js>"></script>
+<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div th:replace="~{/fragmentos/fragmentos :: cabecalho}"> </div>
+	
+	<div class="container">
+	
+	<h3> Ultimos Edificios Adicionados </h3>
+	<hr>
+	<table class="table table-bordered table-hover">
+	
+	<thead>	
+		<th scope="col"> Edificio </th>
+		<th scope="col"> Endereço </th>
+		<th scope="col"> Bairro </th>
+		<th scope="col"> Cidade </th>
+		<th scope="col"> UF </th>
+		<th scope="col"> Cep </th>
+		<th scope="col"> Sindico </th>
+		<th scope="col"> Fone Sin. </th>
+		<th scope="col"> Zelador </th>
+		<th scope="col"> Fone Zel. </th>
+		<th scope="col"> Ação </th>
+	</thead>
+	<tbody>
+		<tr scope="row" th:each="edificios : ${edificioSP}">
+			<td th:text="${edificios.nome}"> </td>
+			<td th:text="${edificios.endereco}"> </td>
+			<td th:text="${edificios.bairro}"> </td>
+			<td th:text="${edificios.cidade}"> </td>
+			<td th:text="${edificios.uf}"> </td>
+			<td th:text="${edificios.cep}"> </td>
+			<td th:text="${edificios.sindico}"> </td>
+			<td th:text="${edificios.fones1}"> </td>
+			<td th:text="${edificios.zelador}"> </td>
+			<td th:text="${edificios.fonez1}"> </td>
+			<td> 
+			
+				<a class="btn-col btn-primary" th:href="@{alterar/{id}(id=${edificios.id})}"> Editar </a>
+				
+				<a class="btn-col btn-danger" th:href="@{excluir/{id}(id=${edificios.id})}"> Excluir </a>
+			
+			</td>
+		</tr>
+	</tbody>
+	
+	</table>
+	
+	</div>
+	
+	<div th:replace="~{/fragmentos/fragmentos :: rodape}"> </div>	
+</body>
+</html>
