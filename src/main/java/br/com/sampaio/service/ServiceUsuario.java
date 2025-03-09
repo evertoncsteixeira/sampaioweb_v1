@@ -9,7 +9,6 @@ import br.com.sampaio.dao.UsuarioDao;
 import br.com.sampaio.exception.CriptoExistsException;
 import br.com.sampaio.exception.EmailExistsException;
 import br.com.sampaio.exception.LoginExistsException;
-import br.com.sampaio.exception.ServiceExc;
 import br.com.sampaio.model.Usuario;
 import br.com.sampaio.util.util;
 
