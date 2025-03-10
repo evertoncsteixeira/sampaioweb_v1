@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.sampaio.dao.EdificioDao;
 import br.com.sampaio.model.Edificio;
 
+
 @Controller
 public class EdificioController {
 	
