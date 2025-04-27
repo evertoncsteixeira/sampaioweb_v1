@@ -44,7 +44,7 @@ public class UsuarioController {
 	public ModelAndView cadastrarUsuario(Usuario usuario) throws Exception {
 			ModelAndView mv = new ModelAndView();
 			serviceUsuario.cadastrarUsuario(usuario);
-			mv.setViewName("redirect:/index");
+			mv.setViewName("redirect:/");
 			return mv;	
 	}
 	

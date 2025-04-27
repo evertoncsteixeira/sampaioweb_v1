@@ -3,7 +3,6 @@ package br.com.sampaio.model;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
 import br.com.sampaio.enums.TipoUsuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,8 +32,7 @@ public class Usuario {
 	@NotBlank(message="Selecione um tipo de usuário")
 	@Enumerated(EnumType.STRING)
 	private TipoUsuario tipoUsuario;
-	
-	private Long idEdificio;
+
 
 	public Long getId() {
 		return id;
@@ -66,14 +64,6 @@ public class Usuario {
 
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
-	}
-
-	public Long getIdEdificio() {
-		return idEdificio;
-	}
-
-	public void setIdEdificio(Long idEdificio) {
-		this.idEdificio = idEdificio;
 	}
 	
 	public String getLogin() {
