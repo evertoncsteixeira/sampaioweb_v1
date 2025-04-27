@@ -1,4 +1,3 @@
-# filepath: c:\Checkup\Software\sampaio\Dockerfile
 FROM ubuntu:latest AS build
 
 RUN apt-get update 
