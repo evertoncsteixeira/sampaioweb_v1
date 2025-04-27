@@ -19,7 +19,29 @@
         </button>
     </div>
     
-    <div th:replace="~{/fragmentos/fragmentos :: cabecalho}"> </div>
+	<header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64B5F6">
+			<a class="navbar-brand" th:href="@{/index}"> 
+				<img src="/img/logo.png" width=120px/>
+			</a>	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			
+			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
+
+				<a class="btn-nav nav-item nav-link" th:href="@{\index}"> Home </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{inserirEdificios}"> Cadastrar Edificio </a>
+				<a data-toggle="modal" data-target="#modalPesquisa" class="btn-nav nav-item nav-link"> Pesquisar Edificio </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{cadastroLogin}"> Cadastrar Usuário </a>
+				<a class="btn-nav nav-item nav-link"> Inserir Anexos </a>
+				<form action="/logout" method="post">
+					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
+				</form>
+				
+			</div>
+		</nav>
+	</header>	
     
     <section class="neo-section" style="background-image: url('img/bg-index.jpg');">
         <div class="sombra"></div>
@@ -62,6 +84,10 @@
         </div>
     </div>
 
-    <div th:replace="~{/fragmentos/fragmentos :: rodape}"> </div>    
+	<footer th:fragment="rodape">
+		<div class="rodape">
+			<spam> Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA. </spam>
+		</div>
+	</footer> 
 </body>
 </html>
