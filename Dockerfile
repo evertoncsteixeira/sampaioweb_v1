@@ -1,13 +1,20 @@
+# filepath: c:\Checkup\Software\sampaio\Dockerfile
 FROM ubuntu:latest AS build
 
 RUN apt-get update 
-RUN apt-get install openjdk-17-jdk -y
+RUN apt-get install -y openjdk-21-jdk wget tar
+
+# Instalar Maven manualmente
+RUN wget https://downloads.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz
+RUN tar -xvzf apache-maven-3.9.5-bin.tar.gz -C /opt/
+RUN ln -s /opt/apache-maven-3.9.5/bin/mvn /usr/bin/mvn
+
+WORKDIR /app
 COPY . .
 
-RUN apt-get install maven -y
 RUN mvn clean install
 
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 
 EXPOSE 8080
 
