@@ -23,7 +23,6 @@
 				<a class="btn-nav nav-item nav-link" th:href="@{inserirEdificios}"> Cadastrar Edificio </a>
 				<a data-toggle="modal" data-target="#modalPesquisa" class="btn-nav nav-item nav-link"> Pesquisar Edificio </a>
 				<a class="btn-nav nav-item nav-link" th:href="@{cadastroLogin}"> Cadastrar Usuário </a>
-				<a class="btn-nav nav-item nav-link"> Inserir Anexos </a>
 				<form action="/logout" method="post">
 					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
 				</form>
@@ -34,6 +33,33 @@
 
     <div class="container mt-5">
         <h2 class="text-center">Download de Anexos</h2>
+
+        <!-- Filtro por Edifício -->
+        <form method="get" action="/anexo/download" class="mb-4">
+            <div class="form-group">
+                <label for="idEdificio">Filtrar por Edifício:</label>
+                <select class="form-control" id="idEdificio" name="idEdificio">
+                    <option value="" selected>Todos os Edifícios</option>
+                    <option th:each="edificio : ${edificios}" 
+                            th:value="${edificio.id}" 
+                            th:text="${edificio.nome}"></option>
+                </select>
+            </div>
+        
+            <div class="form-group mt-3">
+                <label for="ano">Ano:</label>
+                <input type="number" class="form-control" id="ano" name="ano" placeholder="Digite o ano">
+            </div>
+        
+            <div class="form-group mt-3">
+                <label for="mes">Mês:</label>
+                <input type="number" class="form-control" id="mes" name="mes" placeholder="Digite o mês (1-12)">
+            </div>
+        
+            <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+        </form>
+
+        <!-- Tabela de Anexos -->
         <table class="table table-striped">
             <thead>
                 <tr>

@@ -29,13 +29,10 @@
   			</button>
   			
 			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
-
 				<a class="btn-nav nav-item nav-link" th:href="@{\index}"> Home </a>
 				<a class="btn-nav nav-item nav-link" th:href="@{inserirEdificios}"> Cadastrar Edificio </a>
 				<a data-toggle="modal" data-target="#modalPesquisa" class="btn-nav nav-item nav-link"> Pesquisar Edificio </a>
 				<a class="btn-nav nav-item nav-link" th:href="@{cadastroLogin}"> Cadastrar Usuário </a>
-				<a class="btn-nav nav-item nav-link" th:href="@{anexo/upload}"> Inserir Anexos </a>
-                <a class="btn-nav nav-item nav-link" th:href="@{anexo/download}"> Baixar Anexos </a>
 				<form action="/logout" method="post">
 					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
 				</form>
