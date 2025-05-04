@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Download de Anexos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64B5F6">
+			<a class="navbar-brand" th:href="@{/index}"> 
+				<img src="/img/logo.png" width=120px/>
+			</a>	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			
+			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
+
+				<a class="btn-nav nav-item nav-link" th:href="@{\index}"> Home </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{inserirEdificios}"> Cadastrar Edificio </a>
+				<a data-toggle="modal" data-target="#modalPesquisa" class="btn-nav nav-item nav-link"> Pesquisar Edificio </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{cadastroLogin}"> Cadastrar Usuário </a>
+				<a class="btn-nav nav-item nav-link"> Inserir Anexos </a>
+				<form action="/logout" method="post">
+					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
+				</form>
+				
+			</div>
+		</nav>
+	</header>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Download de Anexos</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome do Arquivo</th>
+                    <th>Tamanho</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="anexo : ${anexos}">
+                    <td th:text="${anexo.nomeOriginal}"></td>
+                    <td th:text="${#numbers.formatDecimal(anexo.tamanho / 1024, 1, 2)} + ' KB'"></td>
+                    <td>
+                        <a th:href="@{/anexo/download/{id}(id=${anexo.id})}" class="btn btn-primary">Download</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer th:fragment="rodape">
+		<div class="rodape">
+			<spam> Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA. </spam>
+		</div>
+	</footer>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
