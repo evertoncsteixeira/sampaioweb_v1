@@ -66,7 +66,9 @@ public class Edificio {
 	@Column (name = "seguro")
 	private LocalDate seguro;
 
-
+	@Column(name = "dia", columnDefinition = "BIGINT DEFAULT 0")
+	private Long dia;
+	
 	public long getId() {
 		return id;
 	}
@@ -148,5 +150,13 @@ public class Edificio {
 	}
 	public void setSeguro(LocalDate seguro) {
 		this.seguro = seguro;
+	}
+
+	public long getDia() {
+		return dia;
+	}
+
+	public void setDia(long dia) {
+		this.dia = dia;
 	}
 }

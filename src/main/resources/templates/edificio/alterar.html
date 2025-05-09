@@ -136,6 +136,14 @@
                 </div>
             </div>
 
+            <!-- Dia -->    
+            <div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label>Dia</label>
+					<input id="dia" class="form-control" th:field="*{dia}" >
+				</div>
+			</div> 
+
             <!-- Botões -->
             <div class="row">
                 <button type="submit" class="btn btn-success offset-md-1">SALVAR</button>
@@ -157,6 +165,7 @@
         $('#fonez1').mask('(00) 00000-0000');
         $('#fones1').mask('(00) 00000-0000');
         $('#cep').mask('00000-000');
+        $('#dia').mask('00');
 		$('#seguro').mask('00/00/0000');
 		$('#mandato').mask('00/00/0000');
     </script>
