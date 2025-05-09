@@ -1,154 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title> Alterar Edificio</title>
-<meta name="viewport" content="width=devide-width, initial-scale=1.0"/>
-<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-<meta name="author" content="Everton Teixeira"/>
-<link rel="stylesheet" href="/css/style.css">
-<script src="https://kit.fontawsome.com/006642858d.js>"></script>
-<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Alterar Edifício</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <meta name="author" content="Everton Teixeira"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<header th:fragment="cabecalho">
-		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64B5F6">
-			<a class="navbar-brand" th:href="@{/index}"> 
-				<img src="/img/logo.png" width=120px/>
-			</a>	
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
-    			<span class="navbar-toggler-icon"></span>
-  			</button>
-  			
-			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
+    <header th:fragment="cabecalho">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64B5F6">
+            <a class="navbar-brand" th:href="@{/index}">
+                <img src="/img/logo.png" width="120px"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navMobile" class="navbar-collapse collapse justify-content-end">
+                <a class="btn-nav nav-item nav-link" th:href="@{/index}">Home</a>
+                <a class="btn-nav nav-item nav-link" th:href="@{/inserirEdificios}">Cadastrar Edifício</a>
+                <a class="btn-nav nav-item nav-link" th:href="@{/cadastroLogin}">Cadastrar Usuário</a>
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn-nav nav-item nav-link btn-danger">Sair</button>
+                </form>
+            </div>
+        </nav>
+    </header>
 
-				<a class="btn-nav nav-item nav-link" th:href="@{/index}"> Home </a>
-				<a class="btn-nav nav-item nav-link" th:href="@{/inserirEdificios}"> Cadastrar Edificio </a>
-				<a class="btn-nav nav-item nav-link" th:href="@{/cadastroLogin}"> Cadastrar Usuário </a>
-				<form action="/logout" method="post">
-					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
-				</form>
-				
-			</div>
-		</nav>
-	</header>
+    <div class="container">
+        <h4>Alterar Edifício</h4>
+        <hr>
+        <form method="post" action="/alterar" th:object="${edificio}">
+            <!-- Campo oculto para o ID -->
+            <input type="hidden" th:field="*{id}">
 
-	<div class="container">
-		<h4> Alterar Edificio</h4>
-		<hr>
-<!-- nome -->
-			<form method="post" action="/alterar" th:object="${edificio}">
-			<input type="hidden" th:field="*{id}">
-			<div class="row">
-				<div class="col-md-8 form-group offset-md-1">
-					<label> Edifício </label>
-					<input class="form-control" placeholder="Ex: 001 Maracatu" th:field="*{nome}" size="100"  maxlength="100">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-6 form-group offset-md-1">
-					<label> Endereço </label>
-					<input class="form-control" placeholder="Ex: Rua ....." th:field="*{endereco}" size="50"  maxlength="40">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-6 form-group offset-md-1">
-					<label> Bairro </label>
-					<input class="form-control" placeholder="Ex: Jardim" th:field="*{bairro}" size="50"  maxlength="40">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-6 form-group offset-md-1">
-					<label> Cidade </label>
-					<input class="form-control" placeholder="Ex: Santana do ..." th:field="*{cidade}" size="50"  maxlength="40">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-3 form-group offset-md-1">
-					<label> Cep </label>
-					<input id="cep" class="form-control" placeholder="Ex: 00000-000" th:field="*{cep}" size="15"  maxlength="15">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-2 form-group offset-md-1">
-					<label> Selecione a UF : </label>
-					<select class="form-control" th:field="*{uf}">
-						<option th:each="uf : ${T(br.com.sampaio.enums.Uf).values()}" th:value="${uf}" th:text="${uf}"> 
-						</option>
-					</select>
-				</div>
-			</div> 
-			
-			<div class="row"> 
-				<div class="col-md-6 form-group offset-md-1">
-					<label> Sindico </label>
-					<input class="form-control" th:field="*{sindico}" size="50"  maxlength="40">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-3 form-group offset-md-1">
-					<label> Telefone Sindico </label>
-					<input id="fones1" class="form-control" th:field="*{fones1}" placeholder="Ex: (11) 99999-999" size="15"  maxlength="15">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-6 form-group offset-md-1">
-					<label> Zelador </label>
-					<input class="form-control" th:field="*{zelador}" size="50"  maxlength="40">
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-3 form-group offset-md-1">
-					<label> Telefone Zelador </label>
-					<input id="fonez1" class="form-control" th:field="*{fonez1}" placeholder="Ex: (11) 99999-999" size="15"  maxlength="15">
-				</div>
-			</div> 
-			
-			
-			<div class="row">
-				<div class="col-md-3 form-group offset-md-1">
-					<label>Mandato</label>
-					<input type="date" class="form-control" th:field="*{mandato}" >
-				</div>
-			</div> 
-			
-			<div class="row">
-				<div class="col-md-3 form-group offset-md-1">
-					<label>Seguro</label>
-					<input type="date" class="form-control" th:field="*{seguro}" >
-				</div>
-			</div> 
-			
-			<div class="row">
-				<button type="submit" class="btn btn-success offset-md-1"> SALVAR </button>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<a th:href="@{/index}" class="btn btn-outline-danger"> VOLTAR </a>
-			</div>
-			
-			</form>
-		</hr>
-	</div>
-	
-	<footer th:fragment="rodape">
-		<div class="rodape">
-			<spam> Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA. </spam>
-		</div>
-	</footer>
+            <!-- Nome -->
+            <div class="row">
+                <div class="col-md-8 form-group offset-md-1">
+                    <label>Edifício</label>
+                    <input class="form-control" placeholder="Ex: 001 Maracatu" th:field="*{nome}" size="100" maxlength="100">
+                </div>
+            </div>
 
- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
- 	<script>
- 		$('#fonez1').mask('(00) 00000-0000');
- 		$('#fones1').mask('(00) 00000-0000');
- 		$('#cep').mask('00000-000');
- 	</script>
+            <!-- Endereço -->
+            <div class="row">
+                <div class="col-md-6 form-group offset-md-1">
+                    <label>Endereço</label>
+                    <input class="form-control" placeholder="Ex: Rua ....." th:field="*{endereco}" size="50" maxlength="40">
+                </div>
+            </div>
+
+            <!-- Bairro -->
+            <div class="row">
+                <div class="col-md-6 form-group offset-md-1">
+                    <label>Bairro</label>
+                    <input class="form-control" placeholder="Ex: Jardim" th:field="*{bairro}" size="50" maxlength="40">
+                </div>
+            </div>
+
+            <!-- Cidade -->
+            <div class="row">
+                <div class="col-md-6 form-group offset-md-1">
+                    <label>Cidade</label>
+                    <input class="form-control" placeholder="Ex: Santana do ..." th:field="*{cidade}" size="50" maxlength="40">
+                </div>
+            </div>
+
+            <!-- CEP -->
+            <div class="row">
+                <div class="col-md-3 form-group offset-md-1">
+                    <label>CEP</label>
+                    <input id="cep" class="form-control" placeholder="Ex: 00000-000" th:field="*{cep}" size="15" maxlength="15">
+                </div>
+            </div>
+
+            <!-- UF -->
+            <div class="row">
+                <div class="col-md-2 form-group offset-md-1">
+                    <label>UF</label>
+                    <select class="form-control" th:field="*{uf}">
+                        <option th:each="uf : ${T(br.com.sampaio.enums.Uf).values()}" th:value="${uf}" th:text="${uf}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Síndico -->
+            <div class="row">
+                <div class="col-md-6 form-group offset-md-1">
+                    <label>Síndico</label>
+                    <input class="form-control" th:field="*{sindico}" size="50" maxlength="40">
+                </div>
+            </div>
+
+            <!-- Telefone Síndico -->
+            <div class="row">
+                <div class="col-md-3 form-group offset-md-1">
+                    <label>Telefone Síndico</label>
+                    <input id="fones1" class="form-control" th:field="*{fones1}" placeholder="Ex: (11) 99999-999" size="15" maxlength="15">
+                </div>
+            </div>
+
+            <!-- Zelador -->
+            <div class="row">
+                <div class="col-md-6 form-group offset-md-1">
+                    <label>Zelador</label>
+                    <input class="form-control" th:field="*{zelador}" size="50" maxlength="40">
+                </div>
+            </div>
+
+            <!-- Telefone Zelador -->
+            <div class="row">
+                <div class="col-md-3 form-group offset-md-1">
+                    <label>Telefone Zelador</label>
+                    <input id="fonez1" class="form-control" th:field="*{fonez1}" placeholder="Ex: (11) 99999-999" size="15" maxlength="15">
+                </div>
+            </div>
+
+            <!-- Mandato -->
+            <div class="row">
+                <div class="col-md-3 form-group offset-md-1">
+                    <label>Mandato</label>
+                    <input id="mandato" class="form-control" th:field="*{mandato}">
+                </div>
+            </div>
+
+            <!-- Seguro -->
+            <div class="row">
+                <div class="col-md-3 form-group offset-md-1">
+                    <label>Seguro</label>
+                    <input id="seguro" class="form-control" th:field="*{seguro}">
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="row">
+                <button type="submit" class="btn btn-success offset-md-1">SALVAR</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{/index}" class="btn btn-outline-danger">VOLTAR</a>
+            </div>
+        </form>
+        <hr>
+    </div>
+
+    <footer th:fragment="rodape">
+        <div class="rodape">
+            <span>Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $('#fonez1').mask('(00) 00000-0000');
+        $('#fones1').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+		$('#seguro').mask('00/00/0000');
+		$('#mandato').mask('00/00/0000');
+    </script>
 </body>
 </html>
