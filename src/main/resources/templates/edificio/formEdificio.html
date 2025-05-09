@@ -130,7 +130,21 @@
 					<input id="fonez1" class="form-control" th:field="*{fonez1}" placeholder="Ex: (11) 99999-999" size="15"  maxlength="15">
 				</div>
 			</div> 
+
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label>Mandato</label>
+					<input type="date" class="form-control" th:field="*{mandato}" >
+				</div>
+			</div> 
 			
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label>Seguro</label>
+					<input type="date" class="form-control" th:field="*{seguro}" >
+				</div>
+			</div> 
+
 			<div class="row">
 				<button type="submit" class="btn btn-success offset-md-1"> SALVAR </button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
@@ -152,6 +166,10 @@
  		$('#fonez1').mask('(00) 00000-0000');
  		$('#fones1').mask('(00) 00000-0000');
  		$('#cep').mask('00000-000');
+		 $('#preserva').mask('000,0', {reverse: true});
+		 $('#pobra').mask('000,0', {reverse: true});
+		 $('#pmulta').mask('000,0', {reverse: true});
+		 $('#pmanutencao').mask('000,0', {reverse: true});
  	</script>
 </body>
 </html>

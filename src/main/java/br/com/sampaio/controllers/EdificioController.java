@@ -2,12 +2,12 @@ package br.com.sampaio.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,26 +22,22 @@ public class EdificioController {
 	private EdificioDao edificioRepository;
 	
 	@GetMapping("/inserirEdificios")
-	public ModelAndView inserirEdificios(Edificio edificio) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("edificio/formEdificio");
-		mv.addObject("edificio", new Edificio());
-		return mv;
+	public String exibirFormularioCadastro(Model model) {
+		model.addAttribute("edificio", new Edificio());
+		return "edificio/formEdificio";
 	}
 	
-	
-	@PostMapping("insertEdificio")
-	public ModelAndView inserirEdificio(@Valid Edificio edificio, BindingResult br) {
-		ModelAndView mv = new ModelAndView();
-		if(br.hasErrors()) {
-			mv.setViewName("edificio/formEdificio");
-			mv.addObject("edificio");
-		} else {
-			mv.setViewName("redirect:/edificios-adicionados");
-			edificioRepository.save(edificio);
-		}
-		return mv;
+	@PostMapping("/insertEdificio")
+	public String salvarEdificio(@ModelAttribute("edificio") Edificio edificio, BindingResult result, Model model) {
+    	if (result.hasErrors()) {
+        	return "edificio/formEdificio";
+    	}
+
+    	// Salve o objeto no banco de dados
+    	edificioRepository.save(edificio);
+    	return "redirect:/edificios-adicionados";
 	}
+
 	
 	@GetMapping("edificios-adicionados")
 	public ModelAndView listagemEdificios(Edificio edificio) {

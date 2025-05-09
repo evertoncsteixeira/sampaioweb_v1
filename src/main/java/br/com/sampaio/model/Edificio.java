@@ -1,4 +1,6 @@
 package br.com.sampaio.model;
+import java.time.LocalDate;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -58,6 +60,13 @@ public class Edificio {
 	@Column (name = "fonez1", length = 15)
     private String fonez1;
     
+	@Column (name = "mandato")
+	private LocalDate mandato;
+
+	@Column (name = "seguro")
+	private LocalDate seguro;
+
+
 	public long getId() {
 		return id;
 	}
@@ -126,6 +135,18 @@ public class Edificio {
 		this.uf = uf;
 	}
     
-    
-	
+	public LocalDate getMandato() {
+		return mandato;
+	}	
+
+	public void setMandato(LocalDate mandato) {
+		this.mandato = mandato;
+	}	
+
+    public LocalDate getSeguro() {
+		return seguro;
+	}
+	public void setSeguro(LocalDate seguro) {
+		this.seguro = seguro;
+	}
 }
