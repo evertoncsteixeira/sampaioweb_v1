@@ -144,6 +144,69 @@
 				</div>
 			</div> 
 
+            <div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Conta </label>
+					<input class="form-control" th:field="*{conta}" size="30"  maxlength="7">
+				</div>
+			</div> 
+
+            <!-- Conta --> 
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Agência </label>
+					<input class="form-control" th:field="*{agencia}" size="30"  maxlength="4">
+				</div>
+			</div> 
+
+            <!-- Cedente --> 
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Cedente </label>
+					<input class="form-control" th:field="*{cedente}" size="30"  maxlength="10">
+				</div>
+			</div> 
+
+            <!-- CNPJ -->
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> CNPJ </label>
+					<input class="form-control" th:field="*{cnpj}" size="30"  maxlength="30">
+				</div>
+			</div> 
+
+            <!-- Reserva -->
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Reserva </label>
+					<input id="preserva" class="form-control" th:field="*{preserva}" size="30"  maxlength="5">
+				</div>
+			</div>	
+
+            <!-- Obra -->
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Obras </label>
+					<input id="pobras" class="form-control" th:field="*{pobras}" size="30"  maxlength="5">
+				</div>
+			</div>
+
+            <!-- Multa -->
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Multa </label>
+					<input id="pmulta" class="form-control" th:field="*{pmulta}" size="30"  maxlength="5">
+				</div>	
+			</div>
+
+            <!-- Manutencao -->
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Manutenção </label>
+					<input id="pmanutencao" class="form-control" th:field="*{pmanutencao}" size="30"  maxlength="5">
+				</div>
+			</div>
+
             <!-- Botões -->
             <div class="row">
                 <button type="submit" class="btn btn-success offset-md-1">SALVAR</button>
@@ -168,6 +231,10 @@
         $('#dia').mask('00');
 		$('#seguro').mask('00/00/0000');
 		$('#mandato').mask('00/00/0000');
+        $('#preserva').mask('000,0', {reverse: true});
+		$('#pobras').mask('000,0', {reverse: true});
+		$('#pmulta').mask('000,0', {reverse: true});
+		$('#pmanutencao').mask('000,0', {reverse: true});
     </script>
 </body>
 </html>

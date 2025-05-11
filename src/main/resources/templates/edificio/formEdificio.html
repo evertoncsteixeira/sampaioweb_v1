@@ -148,10 +148,65 @@
 			<div class="row">
 				<div class="col-md-3 form-group offset-md-1">
 					<label>Dia</label>
-					<input type="number" class="form-control" th:field="*{dia}" >
+					<input id="dia" class="form-control" th:field="*{dia}" >
 				</div>
 			</div> 
 
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Conta </label>
+					<input class="form-control" th:field="*{conta}" size="30"  maxlength="7">
+				</div>
+			</div> 
+
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Agência </label>
+					<input class="form-control" th:field="*{agencia}" size="30"  maxlength="4">
+				</div>
+			</div> 
+
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> Cedente </label>
+					<input class="form-control" th:field="*{cedente}" size="30"  maxlength="10">
+				</div>
+			</div> 
+
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-1">
+					<label> CNPJ </label>
+					<input class="form-control" th:field="*{cnpj}" size="30"  maxlength="30">
+				</div>
+			</div> 
+
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Reserva </label>
+					<input id="preserva" class="form-control" th:field="*{preserva}" size="30"  maxlength="5">
+				</div>
+			</div>	
+
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Obra </label>
+					<input id="pobras" class="form-control" th:field="*{pobras}" size="30"  maxlength="5">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Multa </label>
+					<input id="pmulta" class="form-control" th:field="*{pmulta}" size="30"  maxlength="5">
+				</div>	
+			</div>
+
+			<div class="row">
+				<div class="col-md-3 form-group offset-md-1">
+					<label> % Manutenção </label>
+					<input id="pmanutencao" class="form-control" th:field="*{pmanutencao}" size="30"  maxlength="5">
+				</div>
+			</div>
+			
 			<div class="row">
 				<button type="submit" class="btn btn-success offset-md-1"> SALVAR </button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
@@ -174,9 +229,10 @@
  		$('#fones1').mask('(00) 00000-0000');
  		$('#cep').mask('00000-000');
 		 $('#preserva').mask('000,0', {reverse: true});
-		 $('#pobra').mask('000,0', {reverse: true});
+		 $('#pobras').mask('000,0', {reverse: true});
 		 $('#pmulta').mask('000,0', {reverse: true});
 		 $('#pmanutencao').mask('000,0', {reverse: true});
+		 $('#dia').mask('00');
  	</script>
 </body>
 </html>

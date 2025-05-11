@@ -1,4 +1,5 @@
 package br.com.sampaio.model;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
@@ -67,7 +68,31 @@ public class Edificio {
 	private LocalDate seguro;
 
 	@Column(name = "dia", columnDefinition = "BIGINT DEFAULT 0")
-	private Long dia;
+	private Long dia = 0L;;
+	
+	@Column (name = "conta", length = 7)
+    private String conta;
+
+	@Column (name = "agencia", length = 4)
+    private String agencia;
+
+	@Column (name = "cedente", length = 10)
+    private String cedente;
+
+	@Column (name = "cnpj", length = 30)
+    private String cnpj;
+
+	@Column (name = "preserva", columnDefinition = "BIGINT DEFAULT 0")
+	private BigDecimal preserva = BigDecimal.ZERO;
+
+	@Column (name = "pobras", columnDefinition = "BIGINT DEFAULT 0")
+	private BigDecimal pobras = BigDecimal.ZERO;
+
+	@Column (name = "pmulta", columnDefinition = "BIGINT DEFAULT 0")
+	private BigDecimal pmulta = BigDecimal.ZERO;
+
+	@Column (name = "pmanutencao", columnDefinition = "BIGINT DEFAULT 0")
+	private BigDecimal pmanutencao = BigDecimal.ZERO;
 	
 	public long getId() {
 		return id;
@@ -158,5 +183,69 @@ public class Edificio {
 
 	public void setDia(long dia) {
 		this.dia = dia;
+	}
+
+	public String getConta() {
+		return conta;
+	}
+
+	public void setConta(String conta) {
+		this.conta = conta;
+	}
+
+	public String getAgencia() {
+		return agencia;
+	}	
+
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
+	}
+
+	public String getCedente() {
+		return cedente;
+	}
+
+	public void setCedente(String cedente) {
+		this.cedente = cedente;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}	
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public BigDecimal getPreserva() {
+		return preserva;
+	}
+
+	public void setPreserva(BigDecimal preserva) {
+		this.preserva = preserva;
+	}
+
+	public BigDecimal getPobras() {
+		return pobras;
+	}
+
+	public void setPobras(BigDecimal pobras) {
+		this.pobras = pobras;
+	}
+
+	public BigDecimal getPmulta() {
+		return pmulta;
+	}
+
+	public void setPmulta(BigDecimal pmulta) {
+		this.pmulta = pmulta;
+	}
+
+	public BigDecimal getPmanutencao() {
+		return pmanutencao;
+	}
+
+	public void setPmanutencao(BigDecimal pmanutencao) {
+		this.pmanutencao = pmanutencao;
 	}
 }
