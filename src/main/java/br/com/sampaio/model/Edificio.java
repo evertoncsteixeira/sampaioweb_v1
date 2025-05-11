@@ -82,16 +82,16 @@ public class Edificio {
 	@Column (name = "cnpj", length = 30)
     private String cnpj;
 
-	@Column (name = "preserva", columnDefinition = "BIGINT DEFAULT 0")
+	@Column (name = "preserva", precision = 15, scale = 2)
 	private BigDecimal preserva = BigDecimal.ZERO;
 
-	@Column (name = "pobras", columnDefinition = "BIGINT DEFAULT 0")
+	@Column (name = "pobras", precision = 15, scale = 2)
 	private BigDecimal pobras = BigDecimal.ZERO;
 
-	@Column (name = "pmulta", columnDefinition = "BIGINT DEFAULT 0")
+	@Column (name = "pmulta", precision = 15, scale = 2)
 	private BigDecimal pmulta = BigDecimal.ZERO;
 
-	@Column (name = "pmanutencao", columnDefinition = "BIGINT DEFAULT 0")
+	@Column (name = "pmanutencao", precision = 15, scale = 2)
 	private BigDecimal pmanutencao = BigDecimal.ZERO;
 	
 	public long getId() {
