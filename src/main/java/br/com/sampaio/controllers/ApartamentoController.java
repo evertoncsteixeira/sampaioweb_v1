@@ -21,7 +21,7 @@ public class ApartamentoController {
     @Autowired
     private EdificioRepository edificioRepository;
 
-    @GetMapping("/listar")
+    @GetMapping
     public String listar(Model model) {
         model.addAttribute("apartamentos", apartamentoService.listarTodos());
         return "apartamento/lista";
