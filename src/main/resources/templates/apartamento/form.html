@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar Edifício</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <meta name="author" content="Everton Teixeira"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64B5F6">
+			<a class="navbar-brand" th:href="@{/index}"> 
+				<img src="/img/logo.png" width=120px/>
+			</a>	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			
+			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
+
+				<a class="btn-nav nav-item nav-link" th:href="@{\index}"> Home </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{inserirEdificios}"> Cadastrar Edificio </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{cadastroLogin}"> Cadastrar Usuário </a>
+				<form action="/logout" method="post">
+					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
+				</form>
+				
+			</div>
+		</nav>
+	</header>
+<div class="container">
+    <h2 th:text="${apartamento.id} != null ? 'Editar Apartamento' : 'Novo Apartamento'"></h2>
+    <form th:action="@{/apartamentos/salvar}" th:object="${apartamento}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <!-- Edifício -->
+        <div class="form-group">
+            <label>Edifício</label>
+            <select th:field="*{idEdificio}" class="form-control" required>
+                <option value="" disabled>Selecione...</option>
+                <option th:each="edificio : ${edificios}"
+                        th:value="${edificio.id}"
+                        th:text="${edificio.nome}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('idEdificio')}" th:errors="*{idEdificio}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Apartamento</label>
+            <input type="text" th:field="*{apto}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('apto')}" th:errors="*{apto}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Fracada</label>
+            <input type="number" step="0.01" th:field="*{fracada}" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label>Fracaog</label>
+            <input type="number" step="0.01" th:field="*{fracaog}" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label>Proprietário</label>
+            <input type="text" th:field="*{proprietario}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('proprietario')}" th:errors="*{proprietario}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Responsável</label>
+            <input type="text" th:field="*{responsavel}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('responsavel')}" th:errors="*{responsavel}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Contato</label>
+            <input type="text" th:field="*{contato}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Correio</label>
+            <input type="text" th:field="*{correio}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('correio')}" th:errors="*{correio}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Endereço</label>
+            <input type="text" th:field="*{endereco}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Bairro</label>
+            <input type="text" th:field="*{bairro}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Cidade</label>
+            <input type="text" th:field="*{cidade}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>CEP</label>
+            <input type="text" th:field="*{cep}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>UF</label>
+            <select th:field="*{uf}" class="form-control" required>
+                <option value="" disabled>Selecione...</option>
+                <option th:each="uf : ${T(br.com.sampaio.enums.Uf).values()}"
+                        th:value="${uf}" th:text="${uf}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('uf')}" th:errors="*{uf}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Fone 1</label>
+            <input id="fone1" type="text" th:field="*{fone1}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('fone1')}" th:errors="*{fone1}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Fone 2</label>
+            <input id="fone2" type="text" th:field="*{fone2}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('fone2')}" th:errors="*{fone2}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Fone 3</label>
+            <input id="fone3" type="text" th:field="*{fone3}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('fone3')}" th:errors="*{fone3}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Fone 4</label>
+            <input id="fone4" type="text" th:field="*{fone4}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('fone4')}" th:errors="*{fone4}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>CPF</label>
+            <input type="text" th:field="*{cpf}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Pessoa</label>
+            <select th:field="*{pessoa}" class="form-control" required>
+                <option value="" disabled>Selecione...</option>
+                <option th:each="p : ${T(br.com.sampaio.enums.Pessoa).values()}"
+                        th:value="${p}" th:text="${p}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('pessoa')}" th:errors="*{pessoa}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" th:field="*{email}" class="form-control"/>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Imprimir</label>
+            <select th:field="*{imprimir}" class="form-control" required>
+                <option value="" disabled>Selecione...</option>
+                <option th:each="s : ${T(br.com.sampaio.enums.SimNao).values()}"
+                        th:value="${s}" th:text="${s}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('imprimir')}" th:errors="*{imprimir}" class="text-danger"></div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a th:href="@{/apartamentos}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+    <footer th:fragment="rodape">
+        <div class="rodape">
+            <span>Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA.</span>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script>
+        $('#fone1').mask('(00) 00000-0000');
+        $('#fone2').mask('(00) 00000-0000');
+        $('#fone3').mask('(00) 00000-0000');
+        $('#fone4').mask('(00) 00000-0000');
+        $('#cep').mask('00000-000');
+    </script>
+</body>
+</html>

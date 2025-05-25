@@ -36,7 +36,6 @@
 				<form action="/logout" method="post">
 					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
 				</form>
-				
 			</div>
 		</nav>
 	</header>	
@@ -48,6 +47,9 @@
             <div class="botoes">
                 <div class="wm">
                     <a th:href="@{/inserirEdificios}" class="btn btn-home">Cadastrar Edificio</a>
+                </div>
+                <div class="wm">
+                    <a th:href="@{/apartamentos/novo}" class="btn btn-home">Cadastrar Apartamento</a>
                 </div>
                 <div class="wm">
                     <a th:href="@{/cadastroLogin}" class="btn btn-home justify-content-center">Cadastrar Usuário</a>
@@ -84,7 +86,8 @@
             </div>
         </div>
     </div>
-
+     
+    </div>
 	<footer th:fragment="rodape">
 		<div class="rodape">
 			<spam> Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA. </spam>

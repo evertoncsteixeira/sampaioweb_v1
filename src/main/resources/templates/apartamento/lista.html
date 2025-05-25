@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar Edifício</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <meta name="author" content="Everton Teixeira"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+     <header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64B5F6">
+			<a class="navbar-brand" th:href="@{/index}"> 
+				<img src="/img/logo.png" width=120px/>
+			</a>	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMobile">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+  			
+			<div id="navMobile" class="navbar-collapse collapse justify-content-end" >
+
+				<a class="btn-nav nav-item nav-link" th:href="@{\index}"> Home </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{inserirEdificios}"> Cadastrar Edificio </a>
+				<a class="btn-nav nav-item nav-link" th:href="@{cadastroLogin}"> Cadastrar Usuário </a>
+				<form action="/logout" method="post">
+					<button type="submit" class="btn-nav nav-item nav-link btn-danger" > Sair </button>
+				</form>
+				
+			</div>
+		</nav>
+	</header>
+<div class="container">
+    <h2>Lista de Apartamentos</h2>
+    <a th:href="@{/apartamentos/novo}" class="btn btn-primary mb-2">Novo Apartamento</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apartamento</th>
+                <th>Proprietário</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ap : ${apartamentos}">
+                <td th:text="${ap.id}"></td>
+                <td th:text="${ap.apto}"></td>
+                <td th:text="${ap.proprietario}"></td>
+                <td>
+                    <a th:href="@{/apartamentos/editar/{id}(id=${ap.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/apartamentos/excluir/{id}(id=${ap.id})}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Confirma a exclusão?')">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <footer th:fragment="rodape">
+        <div class="rodape">
+            <span>Todos os Direitos Reservados - 2025 &copy; Checkup Informática LTDA.</span>
+        </div>
+    </footer>
+</body>
+</html>
